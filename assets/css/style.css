@@ -339,6 +339,78 @@ h6 {
   display: block;
 }
 
+/* Branches flags and labels */
+.branch-item {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.branch-flag {
+  /* increased width by 20% from previous 70px -> 84px, height unchanged */
+  width: 84px;
+  height: 48px;
+  display: block;
+  margin: 0 0 8px;
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.branch-item h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Ensure Branches content sits above the section-bg overlay */
+.branches .container,
+.branches .section-title,
+.branches .row {
+  position: relative;
+  z-index: 3;
+}
+
+.branches .branch-item {
+  z-index: 4;
+}
+
+/* Partner logos row */
+.partner-logos .col-auto {
+  text-align: center;
+  padding: 12px;
+}
+.partner-logo {
+  /* Fixed height to normalize all partner logos to Accenture's displayed height */
+  height: 60px;
+  width: auto;
+  display: inline-block;
+  margin: 6px 12px;
+  object-fit: contain;
+}
+
+/* Bottom-align partner logos and normalize specific sizes */
+.partner-logos {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.partner-logos .col-auto {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.partner-accenture { height: 50px; transform: translateY(-6px); } /* slightly smaller and nudged up */
+.partner-3point1 { height: 110px; transform: translateY(8px); } /* bigger 3Point1 logo and nudged down */
+.partner-pwc { transform: none; }
+.partner-deloitte { height: 60px; transform: translateX(12px); }
+
+/* Restore Partners title spacing and lift the logos container slightly so bottoms remain aligned */
+.partners .partner-logos { margin-top: -18px !important; }
+.partners .partner-logos .col-auto,
+.partners .partner-logos .partner-logo { transform: none !important; }
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
