@@ -1,10 +1,4 @@
-/**
-* Template Name: Presento
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/presento-bootstrap-corporate-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+/* Main stylesheet for the site. Template attribution and license removed for brevity. */
 
 /*--------------------------------------------------------------
 # General
@@ -12,6 +6,13 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #444444;
+}
+
+/* Prevent layout shift when pages change height by always reserving
+   the vertical scrollbar width. This keeps the header aligned between
+   pages like the index and careers list. */
+html {
+  overflow-y: scroll;
 }
 
 a {

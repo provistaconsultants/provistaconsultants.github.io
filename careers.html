@@ -15,6 +15,49 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    /* Job toggle styles */
+    .job-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      color: #0d6efd; /* bootstrap link color */
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .job-toggle .toggle-icon {
+      transition: transform .18s ease;
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+    .job-toggle.open .toggle-icon { transform: rotate(180deg); }
+    .job-desc-row { display: none; }
+    .job-desc-row.open { display: table-row; }
+
+    /* Prevent table columns from shifting when a description row is inserted.
+       Use a fixed table layout and explicit column widths scoped to the careers page. */
+    .careers-page .table {
+      table-layout: fixed;
+      width: 100%;
+      word-wrap: break-word;
+    }
+    .careers-page .table thead th:nth-child(1),
+    .careers-page .table tbody td:nth-child(1) { width: 40%; }
+    .careers-page .table thead th:nth-child(2),
+    .careers-page .table tbody td:nth-child(2) { width: 18%; }
+    .careers-page .table thead th:nth-child(3),
+    .careers-page .table tbody td:nth-child(3) { width: 14%; }
+    .careers-page .table thead th:nth-child(4),
+    .careers-page .table tbody td:nth-child(4) { width: 14%; }
+    .careers-page .table thead th:nth-child(5),
+    .careers-page .table tbody td:nth-child(5) { width: 14%; }
+
+    /* Make sure the description cell (colspan) doesn't change column sizing */
+    .careers-page .job-desc-row td {
+      white-space: normal;
+    }
+  </style>
 </head>
 
 <body class="careers-page">
@@ -29,8 +72,8 @@
           <li><a class="nav-link scrollto" href="index.html#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
           <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <li><a class="nav-link active" href="careers.html">Careers</a></li>
           <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+          <li><a class="nav-link active" href="careers.html">Careers</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -61,13 +104,33 @@
                 <tbody>
                   <!-- Only Contact Center Agent remains -->
                   <tr>
-                    <td><a href="#" class="job-toggle" data-job="4">Contact Center Agent</a></td>
+                    <td><a href="#" class="job-toggle" data-job="4">Contact Center Agent <i class="bi bi-chevron-down toggle-icon"></i></a></td>
                     <td>Riyadh</td>
                     <td>2025-11-01</td>
                     <td>2025-12-15</td>
                     <td><button class="btn btn-secondary btn-sm" disabled title="Applications closed">Apply</button></td>
                   </tr>
-                  <tr class="job-desc-row" id="desc-row-4" style="display:none;"><td colspan="5">Contact Center Agent — Provide exceptional customer support and service via phone and email. Location: Riyadh.</td></tr>
+                  <tr class="job-desc-row" id="desc-row-4"><td colspan="5">
+                    <p>We are seeking a professional Contact Center Agent fluent in Arabic and English to handle inbound and outbound customer interactions. The ideal candidate will provide excellent customer service, resolve inquiries efficiently, and maintain accurate records while ensuring a positive customer experience.</p>
+
+                    <strong>Key Responsibilities:</strong>
+                    <ul>
+                      <li>Handle customer calls, emails, and chats in Arabic and English</li>
+                      <li>Resolve customer inquiries, complaints, and service requests</li>
+                      <li>Document interactions accurately in the system</li>
+                      <li>Meet quality, productivity, and customer satisfaction standards</li>
+                    </ul>
+
+                    <strong>Requirements:</strong>
+                    <ul>
+                      <li>Fluency in Arabic and English (spoken and written)</li>
+                      <li>Strong communication and problem-solving skills</li>
+                      <li>Customer-service oriented with a professional attitude</li>
+                      <li>Basic computer and CRM skills</li>
+                    </ul>
+
+                    <p><em>Location: Riyadh</em></p>
+                  </td></tr>
                 </tbody>
               </table>
             </div>
@@ -79,7 +142,7 @@
   </main>
 
   <script>
-    // Toggle job description rows
+    // Expand/collapse job description and rotate chevron
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.job-toggle').forEach(function (el) {
         el.addEventListener('click', function (e) {
@@ -87,7 +150,12 @@
           var id = el.getAttribute('data-job');
           var row = document.getElementById('desc-row-' + id);
           if (!row) return;
-          row.style.display = (row.style.display === 'none' || row.style.display === '') ? 'table-row' : 'none';
+          var isOpen = el.classList.toggle('open');
+          if (isOpen) {
+            row.classList.add('open');
+          } else {
+            row.classList.remove('open');
+          }
         });
       });
     });
@@ -100,20 +168,7 @@
       </div>
     </div>
   </footer>
-  <script>
-    // Toggle job description rows
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.job-toggle').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-          e.preventDefault();
-          var id = el.getAttribute('data-job');
-          var row = document.getElementById('desc-row-' + id);
-          if (!row) return;
-          row.style.display = (row.style.display === 'none' || row.style.display === '') ? 'table-row' : 'none';
-        });
-      });
-    });
-  </script>
+  <!-- Job toggle script (kept once above) -->
 
   <!-- Vendor JS Files (copied from index.html) -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

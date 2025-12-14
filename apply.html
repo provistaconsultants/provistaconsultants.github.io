@@ -12,13 +12,37 @@
 
 </head>
 
-<body style="margin-top:90px;">
-  <div class="container">
+<body>
+
+  <!-- Header (same as index) -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <a href="index.html" class="navbar-brand me-4"><img src="assets/img/provista_logo_header.png" alt="Provista logo"/></a>
+      <h1 class="logo me-auto"><a href="index.html">Provista<span></span></a></h1>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="index.html#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+          <li><a class="nav-link" href="careers.html">Careers</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header>
+
+  <main style="margin-top:90px;">
+    <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <h2>Apply for Position</h2>
         <p id="job-title" class="lead"></p>
 
+        <!-- Application form posts to `forms/careers_apply.php`. enctype required for file uploads -->
         <form id="applyForm" action="forms/careers_apply.php" method="post" enctype="multipart/form-data">
           <input type="hidden" name="job_id" id="job_id" value="">
           <input type="hidden" name="job_title" id="job_title_input" value="">
@@ -258,10 +282,11 @@
 
       </div>
     </div>
-  </div>
+    </div>
+  </main>
 
   <script>
-    // Populate job info from query string
+    // Populate job info from query string (e.g. apply.html?job=4&title=Contact%20Center%20Agent)
     function qs(name) {
       name = name.replace(/[\[\]]/g, '\\$&');
       const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
@@ -276,6 +301,24 @@
     if (jobId) document.getElementById('job_id').value = jobId;
     document.getElementById('job_title_input').value = title;
     document.getElementById('job-title').textContent = title;
+  </script>
+
+  <script>
+    // Ensure the main content sits below the fixed header on all viewports.
+    (function () {
+      function adjustMainSpacing() {
+        var header = document.getElementById('header');
+        var main = document.querySelector('main');
+        if (!header || !main) return;
+        var h = header.offsetHeight;
+        // Use 1.5× the header height for comfortable spacing.
+        main.style.marginTop = (h * 1.5) + 'px';
+      }
+      window.addEventListener('load', adjustMainSpacing);
+      window.addEventListener('resize', adjustMainSpacing);
+      // In case DOM is ready already
+      adjustMainSpacing();
+    })();
   </script>
 
 </body>
