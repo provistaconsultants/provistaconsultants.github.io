@@ -10,7 +10,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #444444;
 }
 
@@ -30,7 +30,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -95,7 +95,7 @@ h6 {
   margin: 0;
   padding: 0;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 #header .logo a {
@@ -108,6 +108,12 @@ h6 {
 
 #header .logo img {
   max-height: 40px;
+}
+
+/* Header left logo (next to text) — keep larger than .logo image */
+#header .navbar-brand img {
+  max-height: 72px;
+  height: auto;
 }
 
 /*--------------------------------------------------------------
@@ -337,7 +343,7 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 100vh;
+  height: 70vh;
   background: url("../img/hero-bg.jpg") top center no-repeat;
   background-size: cover;
   position: relative;
@@ -346,7 +352,7 @@ h6 {
 
 #hero:before {
   content: "";
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -354,17 +360,29 @@ h6 {
   right: 0;
 }
 
+/* Ensure hero content sits above the overlay (prevent overlay from hiding other elements) */
+#hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+#hero:before {
+  z-index: 1;
+}
+
 #hero h1 {
   margin: 0;
-  font-size: 48px;
+  font-size: 64px;
   font-weight: 700;
   color: #fff;
+  text-shadow: 0 2px 12px rgba(255,255,255,0.18);
 }
 
 #hero h2 {
   color: #fff;
   margin: 10px 0 0 0;
-  font-size: 24px;
+  font-size: 32px;
+  text-shadow: 0 2px 10px rgba(255,255,255,0.14);
 }
 
 #hero .btn-get-started {
@@ -394,18 +412,26 @@ h6 {
   }
 
   #hero h1 {
-    font-size: 28px;
+    font-size: 36px;
   }
 
   #hero h2 {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+/* Keep hero subtitle on a single line on desktop */
+@media (min-width: 769px) {
+  #hero h2 {
+    white-space: nowrap;
+    font-size: 28px;
   }
 }
 
 @media (max-height: 500px) {
   #hero {
-    height: 120vh;
+    height: 60vh;
   }
 }
 
@@ -515,6 +541,7 @@ section {
 .clients .swiper-pagination {
   margin-top: 20px;
   position: relative;
+  display: none;
 }
 
 .clients .swiper-pagination .swiper-pagination-bullet {
@@ -529,15 +556,32 @@ section {
   background-color: #e0994b;
 }
 
+.clients .swiper-wrapper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .clients .swiper-slide img {
-  opacity: 0.5;
+  opacity: 1;
   transition: 0.3s;
-  filter: grayscale(100);
+  filter: none;
+  width: 160px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
 }
 
 .clients .swiper-slide img:hover {
   opacity: 1;
   filter: none;
+}
+
+@media (max-width: 768px) {
+  .clients .swiper-slide img {
+    width: 120px;
+    height: 60px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -603,7 +647,7 @@ section {
 
 .about .icon-boxes .icon-box p {
   font-size: 15px;
-  color: #848484;
+  color: #fff;
 }
 
 @media (max-width: 1200px) {
@@ -1004,4 +1048,31 @@ section {
   background: #e0994b;
   color: #fff;
   text-decoration: none;
+}
+
+/* Disable dark skewed overlay on the Careers page */
+.careers-page .section-bg:before {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Ensure text is readable on the Careers page (remove white-on-white) */
+.careers-page .section-bg {
+  color: #222 !important;
+}
+
+/* Layout and footer adjustments specific to Careers page */
+.careers-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.careers-page main {
+  flex: 1 0 auto;
+}
+.careers-page #footer > div {
+  padding: 36px 0 !important; /* double height */
+}
+.careers-page #footer {
+  margin-top: 0 !important;
 }

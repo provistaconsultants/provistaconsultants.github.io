@@ -6,8 +6,10 @@
   * For more info and help: https://bootstrapmade.com/php-email-form/
   */
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+  // Receiving email address for website messages
+  $receiving_email_address = 'admin@provistaconsultants.com';
+    // Use Riyadh timezone for message timestamps
+    date_default_timezone_set('Asia/Riyadh');
 
   if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
     include( $php_email_form );
@@ -21,17 +23,27 @@
   $contact->to = $receiving_email_address;
   $contact->from_name = $_POST['name'];
   $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+  // Subject: indicate website source and include timestamp
+  $timestamp = date('Y-m-d H:i:s');
+  $safe_subject = isset($_POST['subject']) ? trim($_POST['subject']) : 'No subject';
+  $contact->subject = "[Website Message] " . $safe_subject . " — " . $timestamp;
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
+    // SMTP configuration - recommended provider: SendGrid
+    // Instructions:
+    // 1. Create a SendGrid account and generate an API Key with "Full Access" or "Mail Send" permission.
+    // 2. Use username 'apikey' and the generated API key as the password below.
+    // 3. Replace the 'password' value with your API key.
+    // Example: https://docs.sendgrid.com/for-developers/sending-email/getting-started-smtp
+    // SendGrid SMTP configuration (reads API key from environment variable)
+    $sendgrid_key = getenv('SENDGRID_API_KEY') ?: 'SG.YOUR_SENDGRID_API_KEY_HERE';
+
+    $contact->smtp = array(
+      'host' => 'smtp.sendgrid.net',
+      'username' => 'apikey',
+      'password' => $sendgrid_key,
+      'port' => '587',
+      'secure' => 'tls'
+    );
 
   $contact->add_message( $_POST['name'], 'From');
   $contact->add_message( $_POST['email'], 'Email');

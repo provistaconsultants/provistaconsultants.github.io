@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Careers - Provista</title>
+  <meta content="Open positions at Provista" name="description">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body class="careers-page">
+
+  <!-- Header (simple copy of site's header) -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <a href="index.html" class="navbar-brand me-4"><img src="assets/img/provista_logo_header.png" alt="Provista logo"/></a>
+      <h1 class="logo me-auto"><a href="index.html">Provista</a></h1>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="index.html#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
+          <li><a class="nav-link active" href="careers.html">Careers</a></li>
+          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" style="margin-top:90px;">
+    <section class="section-bg py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Careers</h2>
+          <p>Explore open positions and apply online.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Position</th>
+                    <th>Location</th>
+                    <th>Date Posted</th>
+                    <th>Closing Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Only Contact Center Agent remains -->
+                  <tr>
+                    <td><a href="#" class="job-toggle" data-job="4">Contact Center Agent</a></td>
+                    <td>Riyadh</td>
+                    <td>2025-11-01</td>
+                    <td>2025-12-15</td>
+                    <td><button class="btn btn-secondary btn-sm" disabled title="Applications closed">Apply</button></td>
+                  </tr>
+                  <tr class="job-desc-row" id="desc-row-4" style="display:none;"><td colspan="5">Contact Center Agent — Provide exceptional customer support and service via phone and email. Location: Riyadh.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Toggle job description rows
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.job-toggle').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          var id = el.getAttribute('data-job');
+          var row = document.getElementById('desc-row-' + id);
+          if (!row) return;
+          row.style.display = (row.style.display === 'none' || row.style.display === '') ? 'table-row' : 'none';
+        });
+      });
+    });
+  </script>
+
+  <footer id="footer">
+    <div style="background:#111; padding:18px 0;">
+      <div class="container text-center">
+        <!-- Minimal footer bar for Careers page (no inner grey bar, no social icons, no credits) -->
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Toggle job description rows
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.job-toggle').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          var id = el.getAttribute('data-job');
+          var row = document.getElementById('desc-row-' + id);
+          if (!row) return;
+          row.style.display = (row.style.display === 'none' || row.style.display === '') ? 'table-row' : 'none';
+        });
+      });
+    });
+  </script>
+
+  <!-- Vendor JS Files (copied from index.html) -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
