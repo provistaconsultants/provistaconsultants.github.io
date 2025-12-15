@@ -46,7 +46,10 @@
    */
   let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
-    let position = window.scrollY + 200
+    // Use header height for offset so fixed header doesn't misclassify sections
+    let header = select('#header')
+    let offset = header ? header.offsetHeight : 0
+    let position = window.scrollY + offset + 20
     navbarlinks.forEach(navbarlink => {
       if (!navbarlink.hash) return
       let section = select(navbarlink.hash)
@@ -145,6 +148,13 @@
         navbarToggle.classList.toggle('bi-x')
       }
       scrollto(this.hash)
+      // Immediately mark the clicked link active to avoid incorrect highlight during smooth scrolling
+      try {
+        navbarlinks.forEach(nav => nav.classList.remove('active'))
+        this.classList.add('active')
+      } catch (err) {
+        // noop
+      }
     }
   }, true)
 

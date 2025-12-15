@@ -92,7 +92,7 @@ h6 {
 }
 
 #header .logo {
-  font-size: 30px;
+  font-size: 36px;
   margin: 0;
   padding: 0;
   font-weight: 600;
@@ -101,6 +101,15 @@ h6 {
 
 #header .logo a {
   color: #111111;
+}
+
+/* make the sub-label match the main site name formatting exactly */
+#header .logo a .logo-sub {
+  font-size: 1em;
+  font-weight: 600;
+  margin-left: 6px;
+  color: #111111;
+  vertical-align: baseline;
 }
 
 #header .logo a span {
@@ -401,15 +410,21 @@ h6 {
   align-items: flex-end;
   justify-content: center;
 }
-.partner-accenture { height: 50px; transform: translateY(-6px); } /* slightly smaller and nudged up */
-.partner-3point1 { height: 110px; transform: translateY(8px); } /* bigger 3Point1 logo and nudged down */
+.partner-accenture { height: 50px; transform: translateY(-12px); } /* slightly smaller and nudged up more */
+.partner-3point1 { height: 110px; transform: translateY(6px); } /* bigger 3Point1 logo moved slightly down (reduced) */
 .partner-pwc { transform: none; }
 .partner-deloitte { height: 60px; transform: translateX(12px); }
+.partner-ey { transform: translateY(-10px); }
 
 /* Restore Partners title spacing and lift the logos container slightly so bottoms remain aligned */
 .partners .partner-logos { margin-top: -18px !important; }
 .partners .partner-logos .col-auto,
 .partners .partner-logos .partner-logo { transform: none !important; }
+
+/* Per-logo overrides to nudge specific logos up; keep these after the general reset */
+.partners .partner-logos .partner-ey { transform: translateY(-6px) !important; }
+.partners .partner-logos .partner-accenture { transform: translateY(-10px) !important; }
+.partners .partner-logos .partner-3point1 { transform: translateY(6px) !important; }
 
 /*--------------------------------------------------------------
 # Hero Section
